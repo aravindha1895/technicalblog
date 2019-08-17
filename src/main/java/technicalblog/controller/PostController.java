@@ -1,6 +1,6 @@
 package technicalblog.controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,24 +11,15 @@ import technicalblog.model.Post;
 import technicalblog.service.PostService;
 
 @Controller
-public class HomeController {
-
-    public HomeController() {
-        System.out.println("*** HomeController ***");
-    }
-
-    @Autowired
+public class PostController {
+	@Autowired
     private PostService postService;
 
-    @RequestMapping("/")
-    public String getAllPosts(Model model) {
-
-        List<Post> posts = postService.getAllPosts();
-
+    @RequestMapping("posts")
+    public String getUserPosts(Model model) {
+        ArrayList<Post> posts = postService.getOnePost();
         model.addAttribute("posts", posts);
-
-        return "index";
-
+        return "posts";
     }
 
 }
